@@ -1,0 +1,3 @@
+rootProject.name = 'chabokstarterrnbridge'
+
+include ':app'
