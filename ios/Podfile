@@ -1,0 +1,9 @@
+use_frameworks!
+platform :ios, '9.0'
+
+target 'chabokstarterrnbridge' do
+
+  # Pods for AwesomeProject
+  pod 'ChabokPush'
+
+end
