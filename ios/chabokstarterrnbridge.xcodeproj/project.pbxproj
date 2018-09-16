@@ -39,6 +39,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		E6796283214E9F8B0076054F /* AdpPushClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E6796281214E9F8B0076054F /* AdpPushClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +349,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		E64DE761214E61C200E9DA0C /* chabokstarterrnbridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = chabokstarterrnbridge.entitlements; path = chabokstarterrnbridge/chabokstarterrnbridge.entitlements; sourceTree = "<group>"; };
+		E6796281214E9F8B0076054F /* AdpPushClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdpPushClient.m; path = "../node_modules/react-native-chabok/ios/AdpPushClient.m"; sourceTree = "<group>"; };
+		E6796282214E9F8B0076054F /* AdpPushClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdpPushClient.h; path = "../node_modules/react-native-chabok/ios/AdpPushClient.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +491,8 @@
 		13B07FAE1A68108700A75B9A /* chabokstarterrnbridge */ = {
 			isa = PBXGroup;
 			children = (
+				E6796282214E9F8B0076054F /* AdpPushClient.h */,
+				E6796281214E9F8B0076054F /* AdpPushClient.m */,
 				E64DE761214E61C200E9DA0C /* chabokstarterrnbridge.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1162,6 +1167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6796283214E9F8B0076054F /* AdpPushClient.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
