@@ -1,3 +1,5 @@
 rootProject.name = 'chabokstarterrnbridge'
+include ':react-native-chabok'
+project(':react-native-chabok').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-chabok/android')
 
 include ':app'
