@@ -44,3 +44,9 @@ ios/\.DS_Store
 \.DS_Store
 
 ios/chabokstarterrnbridge\.xcworkspace/xcuserdata/
+
+android/app/build/
+
+android/\.gradle/
+
+android/build/
