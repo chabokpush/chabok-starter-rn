@@ -24,7 +24,7 @@ export default class App extends React.Component {
 
     initChabok() {
         const options = {
-            appId: 'chabok-starter/339811759516',
+            appId: 'chabok-starter/839879285435',
             username: 'chabok-starter',
             password: 'chabok-starter',
             apiKey: '70df4ae2e1fd03518ce3e3b21ee7ca7943577749'
