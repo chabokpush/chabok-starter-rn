@@ -49,7 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
             chabok = AdpPushClient.init(
                     getApplicationContext(),
                     MainActivity.class,
-                    "chabok-starter/339811759516",
+                    "chabok-starter/839879285435",
                     "70df4ae2e1fd03518ce3e3b21ee7ca7943577749",
                     "chabok-starter",
                     "chabok-starter"
