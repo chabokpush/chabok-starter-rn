@@ -69,7 +69,7 @@ export default class App extends React.Component {
         );
 
         chabokEmitter.addListener(
-            'onMessage',
+            'ChabokMessageReceived',
             (msg) => {
                 const messageJson = this.getMessages() + JSON.stringify(msg);
                 this.setState({messageReceived: messageJson});
