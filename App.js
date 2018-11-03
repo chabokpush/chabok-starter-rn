@@ -12,6 +12,7 @@ export default class App extends React.Component {
             userId: undefined,
             channel: undefined,
             connectionColor: 'red',
+            eventMessage: undefined,
             messageReceived: undefined,
             connectionState: 'Disconnected',
             messageBody: 'Hello world Message'
@@ -68,10 +69,18 @@ export default class App extends React.Component {
         );
 
         chabokEmitter.addListener(
-            'ChabokMessageReceived',
+            'onMessage',
             (msg) => {
                 const messageJson = this.getMessages() + JSON.stringify(msg);
                 this.setState({messageReceived: messageJson});
+            }
+        );
+
+        chabokEmitter.addListener(
+            'onEvent',
+            (eventMsg) => {
+                const eventMessageJson = this.getEventMessage() + JSON.stringify(eventMsg);
+                this.setState({eventMessage: eventMessageJson});
             }
         );
 
@@ -99,6 +108,7 @@ export default class App extends React.Component {
         this.chabok.unregister();
     }
 
+    // ----------------- Subscribe Group -----------------
     onSubscribeTapped() {
         if (this.state.channel) {
             this.chabok.subscribe(this.state.channel);
@@ -115,6 +125,22 @@ export default class App extends React.Component {
         }
     }
 
+    onSubscribeEventTapped() {
+        if (this.state.channel) {
+            this.chabok.subscribeEvent(this.state.channel);
+        } else {
+            console.warn('The channel name is undefined');
+        }
+    }
+
+    onUnsubscribeEventTapped() {
+        if (this.state.channel) {
+            this.chabok.unSubscribeEvent(this.state.channel);
+        } else {
+            console.warn('The channel name is undefined');
+        }
+    }
+
     // ----------------- Publish Group -----------------
     onPublishTapped() {
         const msg = {
@@ -125,18 +151,18 @@ export default class App extends React.Component {
         this.chabok.publish(msg)
     }
 
-    // onPublishEventTapped() {
-    //     this.chabok.publishEvent('batteryStatus', {state: 'charging'});
-    // }
+    onPublishEventTapped() {
+        this.chabok.publishEvent('batteryStatus', {state: 'charging'});
+    }
 
     //  ----------------- Tag Group -----------------
     onAddTagTapped() {
         if (this.state.tagName) {
             this.chabok.addTag(this.state.tagName)
-                .then(res => {
+                .then(_ => {
                     alert(this.state.tagName + ' tag was assign to ' + this.getUserId() + ' user');
                 })
-                .catch(_ => console.warn("An error happend adding tag ...",_));
+                .catch(_ => console.warn("An error happen adding tag ...",_));
         } else {
             console.warn('The tagName is undefined');
         }
@@ -145,10 +171,10 @@ export default class App extends React.Component {
     onRemoveTagTapped() {
         if (this.state.tagName) {
             this.chabok.removeTag(this.state.tagName)
-                .then(res => {
+                .then(_ => {
                     alert(this.state.tagName + ' tag was removed from ' + this.getUserId() + ' user');
                 })
-                .catch(_ => console.warn("An error happend removing tag ..."));
+                .catch(_ => console.warn("An error happen removing tag ..."));
         } else {
             console.warn('The tagName is undefined');
         }
@@ -180,6 +206,17 @@ export default class App extends React.Component {
             return this.state.messageReceived + '\n --------- \n\n';
         }
         return '';
+    }
+
+    getEventMessage(){
+        if (this.state.eventMessage) {
+            return 'Got event: ' + this.state.eventMessage + '\n --------- \n\n';
+        }
+        return '';
+    }
+
+    getMessageAndEventLogs(){
+        return this.getMessages() + this.getEventMessage();
     }
 
     getTagName() {
@@ -214,19 +251,30 @@ export default class App extends React.Component {
                     <Button
                         style={styles.button}
                         title="Register"
-                        onPress={this.onRegisterTapped.bind(this)}/>
+                        onPress={this.onRegisterTapped.bind(this)}
+                    />
                     <Button
                         style={styles.button}
                         title="Unregister"
                         onPress={this.onUnregisterTapped.bind(this)}/>
+                </View>
+                <View style={styles.nestedButtonView}>
                     <Button
                         style={styles.button}
-                        title="Sub"
+                        title="Subscribe"
                         onPress={this.onSubscribeTapped.bind(this)}/>
                     <Button
                         style={styles.button}
-                        title="Unsub"
+                        title="Unsubscribe"
                         onPress={this.onUnsubscribeTapped.bind(this)}/>
+                    <Button
+                        style={styles.button}
+                        title="Sub Event"
+                        onPress={this.onSubscribeEventTapped.bind(this)}/>
+                    <Button
+                        style={styles.button}
+                        title="Unsub Event"
+                        onPress={this.onUnsubscribeEventTapped.bind(this)}/>
                 </View>
 
                 <View style={styles.nestedButtonView}>
@@ -240,6 +288,10 @@ export default class App extends React.Component {
                         style={styles.button}
                         title="Publish"
                         onPress={this.onPublishTapped.bind(this)}/>
+                    <Button
+                        style={styles.button}
+                        title="PublishEvent"
+                        onPress={this.onPublishEventTapped.bind(this)}/>
                 </View>
                 <View style={styles.nestedButtonView}>
                     <TextInput
@@ -268,7 +320,7 @@ export default class App extends React.Component {
                     <Button style={styles.button} title="Like" onPress={this.onLikeTrackTapped.bind(this)}/>
                 </View>
                 <View>
-                    <Text style={styles.textView}>{this.getMessages()}</Text>
+                    <Text style={styles.textView}>{this.getMessageAndEventLogs()}</Text>
                 </View>
             </View>
         );
