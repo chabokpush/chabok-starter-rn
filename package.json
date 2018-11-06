@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "babel-preset-react-native-stage-0": "^1.0.1",
-    "jest": "^23.6.0",
-    "jest-react-native": "^18.0.0",
-    "react-test-renderer": "16.3.1"
+    "@babel/runtime": "7.0.0",
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "react-test-renderer": "16.6.0-alpha.8af6728",
+    "schedule": "^0.4.0"
   },
   "scripts": {
     "start": "react-native start",
@@ -19,7 +20,7 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "react-native": "~0.57.4",
     "react-native-chabok": "^1.0.1"
   }
 }
