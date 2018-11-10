@@ -342,12 +342,14 @@
 		2D02E47B1E0B4A5D006451C7 /* chabokstarterrnbridge-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chabokstarterrnbridge-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* chabokstarterrnbridge-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "chabokstarterrnbridge-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ACD9D13D8B083BC95B6022C /* Pods-chabokstarterrnbridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chabokstarterrnbridge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chabokstarterrnbridge/Pods-chabokstarterrnbridge.debug.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6D197F09F9FE9E6DE0284782 /* Pods-chabokstarterrnbridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chabokstarterrnbridge.debug.xcconfig"; path = "Target Support Files/Pods-chabokstarterrnbridge/Pods-chabokstarterrnbridge.debug.xcconfig"; sourceTree = "<group>"; };
 		7660A3EAD69E80D1667BD986 /* Pods_chabokstarterrnbridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chabokstarterrnbridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		C64ED776BB9169C290D82751 /* Pods-chabokstarterrnbridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chabokstarterrnbridge.release.xcconfig"; path = "Pods/Target Support Files/Pods-chabokstarterrnbridge/Pods-chabokstarterrnbridge.release.xcconfig"; sourceTree = "<group>"; };
 		E64DE761214E61C200E9DA0C /* chabokstarterrnbridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = chabokstarterrnbridge.entitlements; path = chabokstarterrnbridge/chabokstarterrnbridge.entitlements; sourceTree = "<group>"; };
 		E6796281214E9F8B0076054F /* AdpPushClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdpPushClient.m; path = "../node_modules/react-native-chabok/ios/AdpPushClient.m"; sourceTree = "<group>"; };
 		E6796282214E9F8B0076054F /* AdpPushClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdpPushClient.h; path = "../node_modules/react-native-chabok/ios/AdpPushClient.h"; sourceTree = "<group>"; };
@@ -542,6 +544,8 @@
 			children = (
 				6D197F09F9FE9E6DE0284782 /* Pods-chabokstarterrnbridge.debug.xcconfig */,
 				02D74EB75882AF5901F67876 /* Pods-chabokstarterrnbridge.release.xcconfig */,
+				3ACD9D13D8B083BC95B6022C /* Pods-chabokstarterrnbridge.debug.xcconfig */,
+				C64ED776BB9169C290D82751 /* Pods-chabokstarterrnbridge.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
