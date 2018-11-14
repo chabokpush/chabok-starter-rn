@@ -14,10 +14,6 @@
   
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   {
-    if ([PushClientManager.defaultManager application:application didFinishLaunchingWithOptions:launchOptions]) {
-        NSLog(@"Application was launch by clicking on Notification...");
-    }
-
     NSURL *jsCodeLocation;
     
     jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
