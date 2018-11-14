@@ -44,6 +44,16 @@ export default class App extends React.Component {
 
         const chabokEmitter = new NativeEventEmitter(NativeModules.AdpPushClient);
 
+        chabokEmitter.addListener('onSubscribe',(channel)=>{
+            console.log('############ Subscribe on : ',channel);
+            alert('Subscribe on ' + channel.name);
+        });
+
+        chabokEmitter.addListener('onUnsubscribe',(channel)=>{
+            console.log('############ Unsubscribe on : ',channel);
+            alert('Unsubscribe on ' + channel.name);
+        });
+
         chabokEmitter.addListener(
             'connectionStatus',
             (status) => {
@@ -91,7 +101,10 @@ export default class App extends React.Component {
                     this.chabok.register(userId);
                 }
             })
-            .catch();
+            .catch(()=>{
+                //User not registered yet...
+                //this.chabok.register("USER_ID");
+            });
     }
 
     //  ----------------- Register Group -----------------
