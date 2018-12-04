@@ -26,20 +26,19 @@ export default class App extends React.Component {
     initChabok() {
         const options = {
             appId: 'chabok-starter/839879285435',
+            apiKey: '70df4ae2e1fd03518ce3e3b21ee7ca7943577749',
             username: 'chabok-starter',
             password: 'chabok-starter',
-            apiKey: '70df4ae2e1fd03518ce3e3b21ee7ca7943577749'
+            devMode: true,
         };
         this.chabok = new chabokpush.AdpPushClient();
 
-        this.chabok.setDevelopment(true);
-
-        this.chabok.init(options.appId, options.apiKey, options.username, options.password)
+        this.chabok.init(options.appId, options.apiKey, options.username, options.password, options.devMode)
             .then((state) => {
-                console.log(state);
+                console.log("Initialize SDK ", state);
             })
             .catch((error) => {
-                console.log(error);
+                console.error("Not Initialize error: ", error);
             });
 
         const chabokEmitter = new NativeEventEmitter(NativeModules.AdpPushClient);
