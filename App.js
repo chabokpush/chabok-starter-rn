@@ -21,6 +21,8 @@ export default class App extends React.Component {
 
     componentDidMount() {
         this.initChabok();
+
+        this.registerOnChabok();
     }
 
     initChabok() {
@@ -43,18 +45,19 @@ export default class App extends React.Component {
 
         const chabokEmitter = new NativeEventEmitter(NativeModules.AdpPushClient);
 
-        chabokEmitter.addListener('onSubscribe',(channel)=>{
-            console.log('############ Subscribe on : ',channel);
-            alert('Subscribe on ' + channel.name);
-        });
+        chabokEmitter.addListener('onSubscribe',
+            (channel) => {
+                console.log('Subscribe on : ', channel);
+                alert('Subscribe on ' + channel.name);
+            });
 
-        chabokEmitter.addListener('onUnsubscribe',(channel)=>{
-            console.log('############ Unsubscribe on : ',channel);
-            alert('Unsubscribe on ' + channel.name);
-        });
+        chabokEmitter.addListener('onUnsubscribe',
+            (channel) => {
+                console.log('Unsubscribe on : ', channel);
+                alert('Unsubscribe on ' + channel.name);
+            });
 
-        chabokEmitter.addListener(
-            'connectionStatus',
+        chabokEmitter.addListener('connectionStatus',
             (status) => {
                 let connectionColor = 'red';
                 let connectionState = 'error';
@@ -77,22 +80,22 @@ export default class App extends React.Component {
             }
         );
 
-        chabokEmitter.addListener(
-            'ChabokMessageReceived',
+        chabokEmitter.addListener('ChabokMessageReceived',
             (msg) => {
                 const messageJson = this.getMessages() + JSON.stringify(msg);
                 this.setState({messageReceived: messageJson});
             }
         );
 
-        chabokEmitter.addListener(
-            'onEvent',
+        chabokEmitter.addListener('onEvent',
             (eventMsg) => {
                 const eventMessageJson = this.getEventMessage() + JSON.stringify(eventMsg);
                 this.setState({eventMessage: eventMessageJson});
             }
         );
+    }
 
+    registerOnChabok() {
         this.chabok.getUserId()
             .then(userId => {
                 if (userId) {
@@ -174,7 +177,7 @@ export default class App extends React.Component {
                 .then(_ => {
                     alert(this.state.tagName + ' tag was assign to ' + this.getUserId() + ' user');
                 })
-                .catch(_ => console.warn("An error happen adding tag ...",_));
+                .catch(_ => console.warn("An error happen adding tag ...", _));
         } else {
             console.warn('The tagName is undefined');
         }
@@ -220,14 +223,14 @@ export default class App extends React.Component {
         return '';
     }
 
-    getEventMessage(){
+    getEventMessage() {
         if (this.state.eventMessage) {
             return 'Got event: ' + this.state.eventMessage + '\n --------- \n\n';
         }
         return '';
     }
 
-    getMessageAndEventLogs(){
+    getMessageAndEventLogs() {
         return this.getMessages() + this.getEventMessage();
     }
 
