@@ -1,6 +1,6 @@
 import React from 'react';
 import chabokpush from 'react-native-chabok';
-import {StyleSheet, Button, Text, View, TextInput, NativeEventEmitter, NativeModules} from 'react-native';
+import {StyleSheet, Button, Text, View, TextInput, NativeEventEmitter, NativeModules, ScrollView} from 'react-native';
 
 export default class App extends React.Component {
 
@@ -332,8 +332,10 @@ export default class App extends React.Component {
                     <Button style={styles.button} title="Comment" onPress={this.onCommentTrackTapped.bind(this)}/>
                     <Button style={styles.button} title="Like" onPress={this.onLikeTrackTapped.bind(this)}/>
                 </View>
-                <View>
-                    <Text style={styles.textView}>{this.getMessageAndEventLogs()}</Text>
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    <ScrollView>
+                        <Text style={styles.textView}>{this.getMessageAndEventLogs()}</Text>
+                    </ScrollView>
                 </View>
             </View>
         );
