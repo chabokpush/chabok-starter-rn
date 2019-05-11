@@ -93,6 +93,27 @@ export default class App extends React.Component {
                 this.setState({eventMessage: eventMessageJson});
             }
         );
+
+        chabokEmitter.addListener(
+            'notificationOpened',
+            (msg) => {
+                console.log(msg);
+
+                if (msg.actionType === 'opened'){
+                    console.log("Notification opened by user");
+                } else if (msg.actionType === 'dismissed'){
+                    console.log("Notification dismissed by user");
+                } else if (msg.actionType === 'action_taken'){
+                    console.log("User tapped on notification " , msg.actionId , " action");
+                }
+
+                if (msg.actionUrl) {
+                    console.log("Got deep link (", msg.actionUrl, ")");
+                }
+            }
+        );
+
+        this.chabok.notificationOpenedHandler();
     }
 
     registerOnChabok() {
