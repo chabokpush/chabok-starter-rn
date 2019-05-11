@@ -105,9 +105,9 @@ export default class App extends React.Component {
 
                 this.chabok.setUserInfo({name: 'Chabok', family: 'Push', age: 3})
             })
-            .catch(()=>{
+            .catch((e)=> {
                 //User not registered yet...
-                //this.chabok.register("USER_ID");
+                this.chabok.registerAsGuest();
             });
     }
 
