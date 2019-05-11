@@ -113,6 +113,8 @@ export default class App extends React.Component {
             }
         );
 
+        this.chabok.setDefaultTracker("Zbbf1P");
+
         this.chabok.notificationOpenedHandler();
     }
 
