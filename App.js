@@ -102,6 +102,8 @@ export default class App extends React.Component {
                     this.setState({userId});
                     this.chabok.register(userId);
                 }
+
+                this.chabok.setUserInfo({name: 'Chabok', family: 'Push', age: 3})
             })
             .catch(()=>{
                 //User not registered yet...
