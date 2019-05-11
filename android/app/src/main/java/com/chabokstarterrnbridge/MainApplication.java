@@ -3,6 +3,9 @@ package com.chabokstarterrnbridge;
 import android.app.Application;
 
 import com.adpdigital.push.AdpPushClient;
+import com.adpdigital.push.ChabokNotification;
+import com.adpdigital.push.ChabokNotificationAction;
+import com.adpdigital.push.NotificationHandler;
 import com.facebook.react.ReactApplication;
 import com.adpdigital.push.rn.ChabokReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -54,6 +57,14 @@ public class MainApplication extends Application implements ReactApplication {
                     "chabok-starter",
                     "chabok-starter"
             );
+
+            chabok.addNotificationHandler(new NotificationHandler(){
+                @Override
+                public boolean notificationOpened(ChabokNotification message, ChabokNotificationAction notificationAction) {
+                    ChabokReactPackage.notificationOpened(message, notificationAction);
+                    return super.notificationOpened(message, notificationAction);
+                }
+            });
         }
     }
 
