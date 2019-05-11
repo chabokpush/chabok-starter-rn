@@ -1,6 +1,6 @@
 import React from 'react';
 import chabokpush from 'react-native-chabok';
-import {StyleSheet, Button, Text, View, TextInput, NativeEventEmitter, NativeModules, ScrollView} from 'react-native';
+import {Platform, Linking, StyleSheet, Button, Text, View, TextInput, NativeEventEmitter, NativeModules, ScrollView} from 'react-native';
 
 export default class App extends React.Component {
 
@@ -23,6 +23,31 @@ export default class App extends React.Component {
         this.initChabok();
 
         this.registerOnChabok();
+
+        Linking.getInitialURL().then((url) => {
+            console.log('getInitialURL = ', url);
+
+            if (url) {
+                this.handleOpenURL({ url });
+            }
+        });
+        if (Platform.OS === 'ios') {
+            Linking.addEventListener('url', this.handleOpenURL.bind(this));
+        }
+    }
+
+    componentWillUnmount() {
+        Linking.removeEventListener('url', this.handleOpenURL);
+    }
+
+    handleOpenURL(event) {
+        console.log("Got deep-link url = ", event.url);
+        const route = event.url.replace(/.*?:\/\//g, '');
+        // do something with the url, in our case navigate(route)
+
+        if (event && event.url) {
+            this.chabok.appWillOpenUrl(event.url);
+        }
     }
 
     initChabok() {
