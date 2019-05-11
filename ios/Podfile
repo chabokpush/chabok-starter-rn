@@ -7,3 +7,10 @@ target 'chabokstarterrnbridge' do
   pod 'ChabokPush'
 
 end
+
+target 'NotificationService' do
+  use_frameworks!
+  
+  pod 'ChabokPush'
+  
+end
