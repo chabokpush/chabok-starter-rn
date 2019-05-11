@@ -6,15 +6,24 @@
  */
 
 #import "AppDelegate.h"
+#import "AdpPushClient.h"
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
 #import <React/RCTBundleURLProvider.h>
 #import <AdpPushClient/AdpPushClient.h>
 
+@interface AppDelegate ()<PushClientManagerDelegate>
+
+@end
+
 @implementation AppDelegate
   
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
   {
+    
+    [PushClientManager.defaultManager addDelegate:self];
+    [AdpPushClient registerToUNUserNotificationCenter];
+    
     NSURL *jsCodeLocation;
     
     jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -47,6 +56,22 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
   // Manager hook and Handle iOS 8 remote Notificaiton Settings
   [PushClientManager.defaultManager application:application didRegisterUserNotificationSettings:notificationSettings];
+}
+  
+-(void) userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+  [AdpPushClient notificationOpened:response.notification.request.content.userInfo actionId:response.actionIdentifier];
+}
+  
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+  [AdpPushClient notificationOpened:userInfo];
+}
+  
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    [AdpPushClient notificationOpened:userInfo];
+}
+  
+-(void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler{
+    [AdpPushClient notificationOpened:userInfo actionId:identifier];
 }
   
 #pragma mark - deep link
