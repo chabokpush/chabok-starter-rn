@@ -251,11 +251,11 @@ export default class App extends React.Component {
 
     //  ----------------- Track Group -----------------
     onAddToCartTrackTapped() {
-        this.chabok.track('AddToCard', {order: '200'});
+        this.chabok.trackPurchase('AddToCard', {revenue: 50000, currency: "RIAL"});
     }
 
     onPurchaseTrackTapped() {
-        this.chabok.track('Purchase', {price: '15000'});
+        this.chabok.trackPurchase('Purchase', {revenue: 20000});
     }
 
     onCommentTrackTapped() {
