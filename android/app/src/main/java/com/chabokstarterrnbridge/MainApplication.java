@@ -1,6 +1,9 @@
 package com.chabokstarterrnbridge;
 
 import android.app.Application;
+import android.app.Notification;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 
 import com.adpdigital.push.AdpPushClient;
 import com.adpdigital.push.ChabokNotification;
@@ -59,6 +62,22 @@ public class MainApplication extends Application implements ReactApplication {
             );
 
             chabok.addNotificationHandler(new NotificationHandler(){
+                @Override
+                public boolean buildNotification(ChabokNotification message, NotificationCompat.Builder builder) {
+                    if (!(builder.mStyle instanceof NotificationCompat.BigPictureStyle)){
+                        if (message != null) {
+                            String notifText = message.getText();
+                            if (notifText != null) {
+                                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notifText));
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                    builder.setPriority(Notification.PRIORITY_MAX);
+                                }
+                            }
+                        }
+                    }
+                    return super.buildNotification(message, builder);
+                }
+
                 @Override
                 public boolean notificationOpened(ChabokNotification message, ChabokNotificationAction notificationAction) {
                     ChabokReactPackage.notificationOpened(message, notificationAction);
