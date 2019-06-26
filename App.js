@@ -266,6 +266,13 @@ export default class App extends React.Component {
         this.chabok.track('Like', {postId: '1234555677754d'});
     }
 
+    onUserAttributesTapped() {
+        this.chabok.setUserAttributes({firstName: 'Chabok', lastName: 'Push', age: 4});
+    }
+    onInceremenAttributeTapped() {
+        this.chabok.incrementUserAttribute('comedy_move');
+    }
+
     getUserId() {
         return this.state.userId || ''
     }
@@ -387,6 +394,10 @@ export default class App extends React.Component {
                     <Button style={styles.button} title="Purchase" onPress={this.onPurchaseTrackTapped.bind(this)}/>
                     <Button style={styles.button} title="Comment" onPress={this.onCommentTrackTapped.bind(this)}/>
                     <Button style={styles.button} title="Like" onPress={this.onLikeTrackTapped.bind(this)}/>
+                </View>
+                <View style={styles.nestedButtonView}>
+                    <Button style={styles.button} title="UserAttributes" onPress={this.onUserAttributesTapped.bind(this)}/>
+                    <Button style={styles.button} title="Increase comedy_move" onPress={this.onInceremenAttributeTapped.bind(this)}/>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center'}}>
                     <ScrollView>
