@@ -68,6 +68,10 @@ export default class App extends React.Component {
                 console.error("Not Initialize error: ", error);
             });
 
+        this.chabok.setOnDeeplinkResponseListener(true, (deepLink) => {
+            alert('Got deferred deepLink = ' + deepLink)
+        });
+
         const chabokEmitter = new NativeEventEmitter(NativeModules.AdpPushClient);
 
         chabokEmitter.addListener('onSubscribe',
@@ -138,7 +142,7 @@ export default class App extends React.Component {
             }
         );
 
-        this.chabok.setDefaultTracker("Zbbf1P");
+        this.chabok.setDefaultTracker("5eZaqa");
 
         this.chabok.notificationOpenedHandler();
     }
@@ -151,7 +155,7 @@ export default class App extends React.Component {
                     this.chabok.register(userId);
                 }
 
-                this.chabok.setUserInfo({name: 'Chabok', family: 'Push', age: 3})
+                // this.chabok.setUserInfo({name: 'Chabok', family: 'Push', age: 3})
             })
             .catch((e)=> {
                 //User not registered yet...
