@@ -3,6 +3,7 @@ package com.chabokstarterrnbridge;
 import android.app.Application;
 import android.app.Notification;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.adpdigital.push.AdpPushClient;
@@ -15,7 +16,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
+import com.adpdigital.push.PushMessage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,19 +64,36 @@ public class MainApplication extends Application implements ReactApplication {
 
             chabok.addNotificationHandler(new NotificationHandler(){
                 @Override
-                public boolean buildNotification(ChabokNotification message, NotificationCompat.Builder builder) {
-                    if (!(builder.mStyle instanceof NotificationCompat.BigPictureStyle)){
-                        if (message != null) {
-                            String notifText = message.getText();
-                            if (notifText != null) {
-                                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notifText));
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                    builder.setPriority(Notification.PRIORITY_MAX);
-                                }
+                public boolean buildNotification(ChabokNotification chabokNotification, NotificationCompat.Builder builder) {
+                    // use builder to customize the notification object
+                    // return false to prevent this notification to be shown to the user, otherwise true
+                    boolean isRichNotification = false;
+
+                    if (chabokNotification.getExtras() != null) {
+                        Bundle payload = chabokNotification.getExtras();
+
+                        //FCM message data
+                        isRichNotification = payload.containsKey("mediaUrl");
+                    } else if (chabokNotification.getMessage() != null) {
+                        PushMessage payload = chabokNotification.getMessage();
+
+                        //Chabok message data
+                        if (payload.getNotification() != null) {
+                            isRichNotification = payload.getNotification().has("mediaUrl");
+                        }
+                    }
+
+                    if (!isRichNotification) {
+                        String notifText = chabokNotification.getText();
+                        if (notifText != null) {
+                            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notifText));
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                builder.setPriority(Notification.PRIORITY_MAX);
                             }
                         }
                     }
-                    return super.buildNotification(message, builder);
+
+                    return super.buildNotification(chabokNotification, builder);
                 }
 
                 @Override
