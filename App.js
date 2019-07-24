@@ -68,9 +68,9 @@ export default class App extends React.Component {
                 console.error("Not Initialize error: ", error);
             });
 
-        this.chabok.setOnDeeplinkResponseListener(true, (deepLink) => {
-            alert('Got deferred deepLink = ' + deepLink)
-        });
+        // this.chabok.setDeeplinkCallbackListener(true, (deepLink) => {
+        //     alert('Got deferred deepLink = ' + deepLink)
+        // });
 
         const chabokEmitter = new NativeEventEmitter(NativeModules.AdpPushClient);
 
